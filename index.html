@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Compliance & Housing Vacancy — District 15 | Onondaga County Legislature</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #F76900;
+      --orange-light: #FF8A2E;
+      --orange-pale: #FFF3E8;
+      --blue: #000E54;
+      --blue-light: #0A1A6B;
+      --white: #FFFFFF;
+      --gray-50: #FAFAFA;
+      --gray-100: #F5F5F5;
+      --gray-200: #E8E8E8;
+      --gray-400: #9CA3AF;
+      --gray-600: #6B7280;
+      --gray-800: #1F2937;
+      --gray-900: #111827;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--gray-50);
+      color: var(--gray-800);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .nav-logo {
+      width: 10px;
+      height: 28px;
+      background: var(--orange);
+      border-radius: 2px;
+    }
+
+    .nav-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--blue);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--gray-600);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--orange); }
+
+    /* ─── HERO ─── */
+    .hero {
+      margin-top: 64px;
+      background: var(--blue);
+      position: relative;
+      overflow: hidden;
+      padding: 5rem 2rem 4.5rem;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(247,105,0,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(247,105,0,0.4), transparent);
+    }
+
+    .hero-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(247,105,0,0.12);
+      border: 1px solid rgba(247,105,0,0.2);
+      padding: 0.35rem 0.85rem;
+      border-radius: 100px;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--orange);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .hero-badge span {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--orange-light);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--orange);
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.65;
+      max-width: 600px;
+    }
+
+    /* ─── METRICS BAR ─── */
+    .metrics {
+      max-width: 1100px;
+      margin: -2rem auto 0;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--gray-200);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .metric-card {
+      background: var(--white);
+      padding: 1.5rem 1.75rem;
+      text-align: center;
+    }
+
+    .metric-icon {
+      width: 36px;
+      height: 36px;
+      margin: 0 auto 0.75rem;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    .metric-icon.orange { background: var(--orange-pale); }
+    .metric-icon.blue { background: rgba(0,14,84,0.06); }
+
+    .metric-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gray-400);
+      margin-bottom: 0.3rem;
+    }
+
+    .metric-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+
+    /* ─── SECTION ─── */
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3.5rem 2rem;
+    }
+
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--orange);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-desc {
+      font-size: 0.95rem;
+      color: var(--gray-600);
+      line-height: 1.65;
+      max-width: 620px;
+      margin-bottom: 2rem;
+    }
+
+    /* ─── DASHBOARD EMBED ─── */
+    .dashboard-wrap {
+      background: var(--white);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.03);
+      border: 1px solid var(--gray-200);
+    }
+
+    .dashboard-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .dashboard-header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .dash-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .dash-dot.green { background: #22C55E; }
+    .dash-dot.yellow { background: #FBBF24; }
+    .dash-dot.red { background: #EF4444; }
+
+    .dashboard-header span {
+      font-size: 0.78rem;
+      color: var(--gray-400);
+      font-weight: 500;
+    }
+
+    .dashboard-iframe {
+      width: 100%;
+      height: 900px;
+      border: none;
+    }
+
+    .dashboard-fallback {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: linear-gradient(135deg, var(--orange-pale) 0%, var(--gray-50) 100%);
+    }
+
+    .fallback-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .dashboard-fallback h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 0.6rem;
+    }
+
+    .dashboard-fallback p {
+      font-size: 0.92rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+      max-width: 480px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .fallback-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--orange);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .fallback-btn:hover {
+      background: var(--orange-light);
+      transform: translateY(-1px);
+    }
+
+    /* ─── DATA SOURCES ─── */
+    .sources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .source-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .source-card:hover {
+      border-color: var(--orange);
+      box-shadow: 0 4px 16px rgba(247,105,0,0.08);
+    }
+
+    .source-card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .source-card h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--gray-900);
+      margin-bottom: 0.4rem;
+    }
+
+    .source-card p {
+      font-size: 0.82rem;
+      color: var(--gray-600);
+      line-height: 1.55;
+    }
+
+    .source-card .arrow {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--orange);
+      letter-spacing: 0.03em;
+    }
+
+    /* ─── ABOUT ─── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .about-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+
+    .about-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--gray-900);
+      margin-bottom: 0.6rem;
+    }
+
+    .about-card p {
+      font-size: 0.88rem;
+      color: var(--gray-600);
+      line-height: 1.65;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--gray-200);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-bar {
+      width: 8px;
+      height: 22px;
+      background: var(--orange);
+      border-radius: 2px;
+    }
+
+    .footer-name {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--blue);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    footer p {
+      font-size: 0.78rem;
+      color: var(--gray-400);
+      line-height: 1.6;
+    }
+
+    footer a {
+      color: var(--orange);
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hero { padding: 4rem 1.5rem 3.5rem; }
+      .dashboard-iframe { height: 450px; }
+    }
+
+    @media (max-width: 480px) {
+      .metrics-grid { grid-template-columns: 1fr; }
+      .dashboard-iframe { height: 380px; }
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .fade-in:nth-child(1) { animation-delay: 0.1s; }
+    .fade-in:nth-child(2) { animation-delay: 0.2s; }
+    .fade-in:nth-child(3) { animation-delay: 0.3s; }
+    .fade-in:nth-child(4) { animation-delay: 0.4s; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-brand">
+      <div class="nav-logo"></div>
+      <span class="nav-title">Onondaga County Housing</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#dashboard">Dashboard</a></li>
+      <li><a href="#data">Data Sources</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge fade-in">
+        <div class="hero-badge-dot"></div>
+        <span>Onondaga County Legislature</span>
+      </div>
+      <h1 class="fade-in">Code Compliance & Housing<br>Vacancy in <em>District 15</em></h1>
+      <p class="fade-in">An interactive dashboard exploring the relationship between housing code violations and vacant or underutilized apartments in Legislative District 15 — identifying patterns in code enforcement, property conditions, and vacancy status to support informed housing policy.</p>
+    </div>
+  </div>
+
+  <!-- METRICS -->
+  <div class="metrics">
+    <div class="metrics-grid">
+      <div class="metric-card fade-in">
+        <div class="metric-icon orange">🏚️</div>
+        <div class="metric-label">Tracking</div>
+        <div class="metric-value">Vacancies</div>
+      </div>
+      <div class="metric-card fade-in">
+        <div class="metric-icon blue">⚠️</div>
+        <div class="metric-label">Analyzing</div>
+        <div class="metric-value">Violations</div>
+      </div>
+      <div class="metric-card fade-in">
+        <div class="metric-icon orange">🔑</div>
+        <div class="metric-label">Mapping</div>
+        <div class="metric-value">Ownership</div>
+      </div>
+      <div class="metric-card fade-in">
+        <div class="metric-icon blue">🔧</div>
+        <div class="metric-label">Identifying</div>
+        <div class="metric-value">Fix Types</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <section id="dashboard" style="max-width: 1400px; padding: 3.5rem 1rem;">
+    <div class="section-label">Interactive Dashboard</div>
+    <div class="section-title">Explore the Data</div>
+    <div class="section-desc">
+      Use the Power BI dashboard below to filter, drill down, and explore housing code enforcement patterns in Legislative District 15. Data was sourced from the City of Syracuse Open Data Portal and pulled on February 5, 2026.
+    </div>
+    <div class="dashboard-wrap">
+      <div class="dashboard-header">
+        <div class="dashboard-header-left">
+          <div class="dash-dot green"></div>
+          <div class="dash-dot yellow"></div>
+          <div class="dash-dot red"></div>
+        </div>
+        <span>Power BI Report — Data pulled February 5, 2026</span>
+      </div>
+      <iframe
+        class="dashboard-iframe"
+        title="Onondaga County Housing Dashboard"
+        src="https://app.powerbi.com/view?r=eyJrIjoiOGRlNjc4NDEtZWZhYi00ZmUzLTkyNTktNDMyZGMxMGM5OGVmIiwidCI6IjA5YjEzYmMxLTAwNmYtNGM0OC04NGZkLTZlZTc3OWE4N2U1NyIsImMiOjF9"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  <!-- DATA SOURCES -->
+  <section id="data">
+    <div class="section-label">Data Sources</div>
+    <div class="section-title">Where the Data Comes From</div>
+    <div class="section-desc">
+      All datasets are publicly available through the City of Syracuse Open Data Portal (data.syr.gov). Data for this dashboard was pulled on February 5, 2026.
+    </div>
+    <div class="sources-grid">
+      <a class="source-card fade-in" href="https://data.syr.gov/datasets/code-violations" target="_blank" rel="noopener">
+        <div class="source-card-icon" style="background:var(--orange-pale);">⚠️</div>
+        <h3>Code Violations</h3>
+        <p>All code violations reported to Code Enforcement, including violation type, location, date, and resolution status.</p>
+        <span class="arrow">View on data.syr.gov →</span>
+      </a>
+      <a class="source-card fade-in" href="https://data.syr.gov/datasets/c23882a4f7904747ab7a4cab637d912d_0/explore" target="_blank" rel="noopener">
+        <div class="source-card-icon" style="background:rgba(0,14,84,0.06);">🏚️</div>
+        <h3>Vacant Properties</h3>
+        <p>Registry of vacant properties across Syracuse, including location data and registration status.</p>
+        <span class="arrow">View on data.syr.gov →</span>
+      </a>
+      <a class="source-card fade-in" href="https://data.syr.gov/datasets/unfit-properties" target="_blank" rel="noopener">
+        <div class="source-card-icon" style="background:var(--orange-pale);">🚫</div>
+        <h3>Unfit Properties</h3>
+        <p>Properties declared unfit for habitation by the Division of Code Enforcement, with enforcement details and status.</p>
+        <span class="arrow">View on data.syr.gov →</span>
+      </a>
+      <a class="source-card fade-in" href="https://data.syr.gov/pages/housing" target="_blank" rel="noopener">
+        <div class="source-card-icon" style="background:rgba(0,14,84,0.06);">📊</div>
+        <h3>Housing Data Hub</h3>
+        <p>The central housing data page on Syracuse's Open Data Portal — explore additional datasets, maps, and visualizations.</p>
+        <span class="arrow">View on data.syr.gov →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">About This Project</div>
+    <div class="section-title">Project Overview</div>
+    <div class="section-desc">
+      Prepared for the Onondaga County Legislature to better understand the relationship between housing code violations and the prevalence of vacant or underutilized apartments in Legislative District 15.
+    </div>
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>🎯 Purpose</h3>
+        <p>Identify patterns in code enforcement, property conditions, and vacancy status to assess how regulatory, economic, or structural factors may be contributing to housing units remaining off the market. The findings support more informed discussions around housing policy, code enforcement practices, and strategies to expand safe, affordable housing within the district.</p>
+      </div>
+      <div class="about-card">
+        <h3>📋 Key Questions</h3>
+        <p>What is the scope and geographic distribution of housing code violations and vacant apartments in District 15? What violation types are most commonly associated with vacant units, and what barriers prevent them from returning to compliance? How might targeted policy tools or support programs help reduce vacancies while maintaining health and safety standards?</p>
+      </div>
+    </div>
+    <div class="about-grid" style="margin-top: 1rem;">
+      <div class="about-card">
+        <h3>📊 Intended Use</h3>
+        <p>Results may help legislators evaluate whether existing code enforcement mechanisms, incentives, or assistance programs are effectively encouraging compliance — or whether alternative approaches are warranted. Findings could also support targeted interventions such as prioritizing outreach, technical assistance, or rehabilitation resources in areas with high concentrations of violations and vacancies.</p>
+      </div>
+      <div class="about-card">
+        <h3>🔍 Methodology</h3>
+        <p>Data was sourced from the City of Syracuse Open Data Portal (data.syr.gov) and pulled on February 5, 2026. Analysis was conducted using Power BI with interactive filtering by location, violation type, property status, and ownership to allow stakeholders to explore the data from multiple angles.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-bar"></div>
+        <span class="footer-name">Code Compliance & Housing Vacancy — District 15</span>
+      </div>
+      <p>
+        Prepared for the Onondaga County Legislature · Data from <a href="https://data.syr.gov" target="_blank" rel="noopener">data.syr.gov</a> · Pulled February 5, 2026<br>
+        Built with Power BI · © 2026 All rights reserved
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
